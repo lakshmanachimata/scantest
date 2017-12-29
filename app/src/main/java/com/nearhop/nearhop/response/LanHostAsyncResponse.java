@@ -2,6 +2,8 @@ package com.nearhop.nearhop.response;
 
 import android.util.SparseArray;
 
+import com.nearhop.nearhop.utilities.Host;
+
 interface LanHostAsyncResponse {
 
     /**
@@ -23,5 +25,5 @@ interface LanHostAsyncResponse {
      *
      * @param output
      */
-    void processFinish(SparseArray<String> output);
+    void processFinish(Host host, SparseArray<String> output);
 }

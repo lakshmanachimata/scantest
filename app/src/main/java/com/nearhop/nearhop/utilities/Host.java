@@ -7,6 +7,7 @@ import com.nearhop.nearhop.AsyncTasks.ScanPortsAsyncTask;
 import com.nearhop.nearhop.AsyncTasks.WolAsyncTask;
 import com.nearhop.nearhop.db.Database;
 import com.nearhop.nearhop.response.HostAsyncResponse;
+import com.nearhop.nearhop.response.MainAsyncResponse;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,12 +18,16 @@ public class Host implements Serializable {
     private String ip;
     private String mac;
     private String vendor;
+    private static String port = "80";
 
     public Host(String ip, String mac, Database db) throws IOException {
         this(ip, mac);
         setVendor(db);
     }
 
+    public static String getPort(){
+        return port;
+    }
     /**
      * Constructs a host with a known IP and MAC.
      *
@@ -101,7 +106,7 @@ public class Host implements Serializable {
      * @param timeout   Socket timeout
      * @param delegate  Delegate to be called when the port scan has finished
      */
-    public static void scanPorts(String ip, int startPort, int stopPort, int timeout, HostAsyncResponse delegate) {
+    public static void scanPorts(Host ip, int startPort, int stopPort, int timeout, MainAsyncResponse delegate) {
         new ScanPortsAsyncTask(delegate).execute(ip, startPort, stopPort, timeout);
     }
 

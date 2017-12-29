@@ -3,6 +3,8 @@ package com.nearhop.nearhop.runnable;
 import android.util.SparseArray;
 
 import com.nearhop.nearhop.response.HostAsyncResponse;
+import com.nearhop.nearhop.response.MainAsyncResponse;
+import com.nearhop.nearhop.utilities.Host;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,11 +16,11 @@ import java.net.Socket;
 import java.nio.channels.IllegalBlockingModeException;
 
 public class ScanPortsRunnable implements Runnable {
-    private String ip;
+    private Host host;
     private int startPort;
     private int stopPort;
     private int timeout;
-    private final WeakReference<HostAsyncResponse> delegate;
+    private final WeakReference<MainAsyncResponse> delegate;
 
     /**
      * Constructor to set the necessary data to perform a port scan
@@ -29,8 +31,8 @@ public class ScanPortsRunnable implements Runnable {
      * @param timeout   Socket timeout
      * @param delegate  Called when this chunk of ports has finished scanning
      */
-    public ScanPortsRunnable(String ip, int startPort, int stopPort, int timeout, WeakReference<HostAsyncResponse> delegate) {
-        this.ip = ip;
+    public ScanPortsRunnable(Host ip, int startPort, int stopPort, int timeout, WeakReference<MainAsyncResponse> delegate) {
+        this.host = ip;
         this.startPort = startPort;
         this.stopPort = stopPort;
         this.timeout = timeout;
@@ -42,8 +44,8 @@ public class ScanPortsRunnable implements Runnable {
      */
     @Override
     public void run() {
-        HostAsyncResponse activity = delegate.get();
-        for (int i = startPort; i <= stopPort; i++) {
+        MainAsyncResponse activity = delegate.get();
+        for (int i = startPort; i < stopPort; i++) {
             if (activity == null) {
                 return;
             }
@@ -52,7 +54,7 @@ public class ScanPortsRunnable implements Runnable {
             try {
                 socket.setReuseAddress(true);
                 socket.setTcpNoDelay(true);
-                socket.connect(new InetSocketAddress(ip, i), timeout);
+                socket.connect(new InetSocketAddress(host.getIp(), i), timeout);
             } catch (IllegalBlockingModeException | IllegalArgumentException e) {
                 activity.processFinish(e);
                 continue;
@@ -75,7 +77,7 @@ public class ScanPortsRunnable implements Runnable {
                 activity.processFinish(e);
             } finally {
                 portData.put(i, data);
-                activity.processFinish(portData);
+                activity.processFinish(host,portData);
                 activity.processFinish(1);
                 try {
                     socket.close();
@@ -110,7 +112,7 @@ public class ScanPortsRunnable implements Runnable {
      * @throws java.io.IOException
      */
     private String parseHTTP(BufferedReader reader, PrintWriter writer) throws IOException {
-        writer.println("GET / HTTP/1.1\r\nHost: " + ip + "\r\n");
+        writer.println("GET / HTTP/1.1\r\nHost: " + host.getIp() + "\r\n");
         char[] buffer = new char[256];
         reader.read(buffer, 0, buffer.length);
         writer.close();

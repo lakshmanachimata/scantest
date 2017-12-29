@@ -5,7 +5,7 @@ import com.nearhop.nearhop.utilities.Host;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public interface MainAsyncResponse extends ErrorAsyncResponse {
+public interface MainAsyncResponse extends LanHostAsyncResponse, WanHostAsyncResponse, ErrorAsyncResponse {
 
     /**
      * Delegate to handle Host + AtomicInteger outputs

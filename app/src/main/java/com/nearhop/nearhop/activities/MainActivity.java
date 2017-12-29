@@ -12,6 +12,9 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,6 +23,7 @@ import android.widget.TextView;
 
 import com.nearhop.nearhop.AsyncTasks.ScanHostsAsyncTask;
 import com.nearhop.nearhop.R;
+import com.nearhop.nearhop.adapaters.DevicesAdapter;
 import com.nearhop.nearhop.databinding.ActivityMainBinding;
 import com.nearhop.nearhop.db.Database;
 import com.nearhop.nearhop.response.MainAsyncResponse;
@@ -50,8 +54,8 @@ public class MainActivity extends NHActivity implements MainAsyncResponse {
     private  Handler scanHandler;
     private BroadcastReceiver receiver;
     private IntentFilter intentFilter = new IntentFilter();
-    private List<Host> hosts = Collections.synchronizedList(new ArrayList<Host>());
-
+    private ArrayList<Host> hosts = new ArrayList<Host>();
+    DevicesAdapter devicesAdapter;
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -134,6 +138,33 @@ public class MainActivity extends NHActivity implements MainAsyncResponse {
         }
     }
 
+
+    public void scanPort(Host host){
+        if(scanProgressDialog != null && scanProgressDialog.isShowing())
+            scanProgressDialog.dismiss();
+
+        try {
+            if (!wifi.isConnectedWifi()) {
+                Errors.showError(getApplicationContext(), getResources().getString(R.string.notConnectedLan));
+                return;
+            }
+        } catch (NHWireless.NoConnectivityManagerException e) {
+            Errors.showError(getApplicationContext(), getResources().getString(R.string.notConnectedLan));
+            return;
+        }
+
+        int startPort = Integer.parseInt(Host.getPort());
+        int stopPort = Integer.parseInt(Host.getPort()) + 1;
+        scanProgressDialog = new ProgressDialog(MainActivity.this, R.style.DialogTheme);
+        scanProgressDialog.setCancelable(false);
+        scanProgressDialog.setTitle("Scanning Port " + startPort);
+        scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        scanProgressDialog.setProgress(0);
+        scanProgressDialog.setMax(1);
+        scanProgressDialog.show();
+
+        Host.scanPorts(host, startPort, stopPort, UserPreference.getLanSocketTimeout(getApplicationContext()), MainActivity.this);
+    }
 
 
     /**
@@ -295,19 +326,37 @@ public class MainActivity extends NHActivity implements MainAsyncResponse {
      * Gets called when host discovery has finished
      *
      * @param h The host to add to the list of discovered hosts
-     * @param i Number of hosts
+     * @param numHosts Number of hosts
      */
     @Override
-    public void processFinish(final Host h, final AtomicInteger i) {
+    public void processFinish(final Host h, final AtomicInteger numHosts) {
         scanHandler.post(new Runnable() {
 
             @Override
             public void run() {
-                hosts.add(h);
+                //if(numHosts.get() == hosts.size()) {
+                    scanPort(h);
+                //}
             }
         });
     }
 
+    public void updateDeviceTable(Host host){
+        hosts.add(host);
+
+        MainActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                devicesAdapter = new DevicesAdapter(getApplicationContext(), hosts);
+                binding.deviceslist.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                binding.deviceslist.setHasFixedSize(true);
+                binding.deviceslist.setAdapter(devicesAdapter);
+                devicesAdapter.notifyDataSetChanged();
+                binding.deviceslist.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
     /**
      * Delegate to update the progress of the host discovery scan
      *
@@ -364,7 +413,53 @@ public class MainActivity extends NHActivity implements MainAsyncResponse {
             }
         });
     }
+    /**
+     * Delegate to handle open ports
+     *
+     * @param output Contains the port number and associated banner (if any)
+     */
+    @Override
+    public void processFinish(Host host,SparseArray<String> output) {
+        int scannedPort = output.keyAt(0);
+        String item = String.valueOf(scannedPort);
 
+        String name = db.selectPortDescription(String.valueOf(scannedPort));
+        name = (name.isEmpty()) ? "unknown" : name;
+        item = formatOpenPort(output, scannedPort, name, item);
+        addOpenPort(item);
+        updateDeviceTable(host);
+    }
+
+    /**
+     * Formats a found open port with its name, description, and associated visualization
+     *
+     * @param entry       Structure holding information about the found open port with its description
+     * @param scannedPort The port number
+     * @param portName    Friendly name for the port
+     * @param item        Contains the transformed output for the open port
+     * @return If all associated data is found a port along with its description, underlying service, and visualization is constructed
+     */
+    private String formatOpenPort(SparseArray<String> entry, int scannedPort, String portName, String item) {
+        String data = item + " - " + portName;
+        if (entry.get(scannedPort) != null) {
+            data += " (" + entry.get(scannedPort) + ")";
+        }
+
+        //If the port is in any way related to HTTP then present a nice globe icon next to it via unicode
+        if (scannedPort == 80 || scannedPort == 443 || scannedPort == 8080) {
+            data += " \uD83C\uDF0E";
+        }
+
+        return data;
+    }
+
+    /**
+     * Adds an open port that was found on a host to the list
+     *
+     * @param port Port number and description
+     */
+    private void addOpenPort(final String port) {
+    }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,

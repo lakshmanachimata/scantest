@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout     xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.nearhop.nearhop.activities.MainActivity">
+
+<Button
+    android:id="@+id/scandevice"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="10dp"
+    android:textColor="@android:color/white"
+    android:background="@drawable/round_button"
+    android:fontFamily="sans-serif-medium"
+    android:textSize="14sp"
+    android:letterSpacing="0.1"
+    android:lineSpacingMultiplier="1.14"
+    android:layout_height="wrap_content"
+    android:text="SCAN DEVICES"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/deviceslist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF4352BA"
+        android:divider="@android:color/transparent"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingRight="10dp"/>
+
+</LinearLayout>
+</layout>

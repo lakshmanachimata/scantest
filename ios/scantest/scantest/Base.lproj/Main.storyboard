@@ -20,36 +20,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwW-QE-rMi">
-                                <rect key="frame" x="87.5" y="82" width="200" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="COi-yw-1Qp"/>
-                                    <constraint firstAttribute="width" constant="200" id="TFb-xS-IWq"/>
-                                </constraints>
-                                <state key="normal" title="SCAN ME"/>
+                                <rect key="frame" x="74.5" y="20" width="225" height="66.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <state key="normal" title="SCAN ME">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WIFI NAME IS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FU-6y-YPG">
-                                <rect key="frame" x="37.5" y="126" width="300" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gwW-QE-rMi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AAh-uh-O7T"/>
-                            <constraint firstItem="8FU-6y-YPG" firstAttribute="top" secondItem="gwW-QE-rMi" secondAttribute="bottom" constant="8" id="Dq7-4A-AvL"/>
-                            <constraint firstItem="8FU-6y-YPG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="c91-lP-CvN"/>
-                            <constraint firstItem="gwW-QE-rMi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="62" id="sub-hd-5ls"/>
-                            <constraint firstItem="8FU-6y-YPG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tXv-3l-xif"/>
+                            <constraint firstItem="gwW-QE-rMi" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.6" id="Bld-f3-usB"/>
+                            <constraint firstItem="gwW-QE-rMi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CQ8-53-dIp"/>
+                            <constraint firstItem="gwW-QE-rMi" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="SbM-Ts-vnH"/>
+                            <constraint firstItem="gwW-QE-rMi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xt1-zV-CgF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="scanem" destination="gwW-QE-rMi" id="3CI-l9-3Rb"/>
-                        <outlet property="wifiname" destination="8FU-6y-YPG" id="TqG-jg-zCu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

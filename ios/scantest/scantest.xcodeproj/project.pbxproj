@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A257DC82029907500B0860A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A257DC72029907500B0860A /* MainViewController.swift */; };
+		2A257DCC202990D800B0860A /* getgateway.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A257DCB202990D800B0860A /* getgateway.c */; };
 		2A55DEFB20244F0400B7E4E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A55DEFA20244F0400B7E4E8 /* AppDelegate.swift */; };
-		2A55DEFD20244F0400B7E4E8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A55DEFC20244F0400B7E4E8 /* MainViewController.swift */; };
 		2A55DF0020244F0400B7E4E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A55DEFE20244F0400B7E4E8 /* Main.storyboard */; };
 		2A55DF0320244F0400B7E4E8 /* scantest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A55DF0120244F0400B7E4E8 /* scantest.xcdatamodeld */; };
 		2A55DF0520244F0400B7E4E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A55DF0420244F0400B7E4E8 /* Assets.xcassets */; };
@@ -17,9 +18,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A257DC72029907500B0860A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2A257DC9202990D800B0860A /* scantest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "scantest-Bridging-Header.h"; sourceTree = "<group>"; };
+		2A257DCA202990D800B0860A /* getgateway.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = getgateway.h; sourceTree = "<group>"; };
+		2A257DCB202990D800B0860A /* getgateway.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = getgateway.c; sourceTree = "<group>"; };
+		2A257DCD2029910700B0860A /* route.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 		2A55DEF720244F0400B7E4E8 /* scantest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scantest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A55DEFA20244F0400B7E4E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A55DEFC20244F0400B7E4E8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2A55DEFF20244F0400B7E4E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A55DF0220244F0400B7E4E8 /* scantest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = scantest.xcdatamodel; sourceTree = "<group>"; };
 		2A55DF0420244F0400B7E4E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +56,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2A257DC22029902B00B0860A /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		2A257DC52029905400B0860A /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				2A257DC72029907500B0860A /* MainViewController.swift */,
+			);
+			path = vc;
+			sourceTree = "<group>";
+		};
+		2A257DC62029905C00B0860A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				2A257DCA202990D800B0860A /* getgateway.h */,
+				2A257DCB202990D800B0860A /* getgateway.c */,
+				2A257DCD2029910700B0860A /* route.h */,
+				2A257DC9202990D800B0860A /* scantest-Bridging-Header.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		2A55DEEE20244F0300B7E4E8 = {
 			isa = PBXGroup;
 			children = (
@@ -72,8 +103,10 @@
 		2A55DEF920244F0400B7E4E8 /* scantest */ = {
 			isa = PBXGroup;
 			children = (
+				2A257DC62029905C00B0860A /* utils */,
+				2A257DC52029905400B0860A /* vc */,
+				2A257DC22029902B00B0860A /* model */,
 				2A55DEFA20244F0400B7E4E8 /* AppDelegate.swift */,
-				2A55DEFC20244F0400B7E4E8 /* MainViewController.swift */,
 				2A55DEFE20244F0400B7E4E8 /* Main.storyboard */,
 				2A55DF0420244F0400B7E4E8 /* Assets.xcassets */,
 				2A55DF0620244F0400B7E4E8 /* LaunchScreen.storyboard */,
@@ -126,6 +159,7 @@
 				TargetAttributes = {
 					2A55DEF620244F0400B7E4E8 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -220,9 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A55DEFD20244F0400B7E4E8 /* MainViewController.swift in Sources */,
+				2A257DC82029907500B0860A /* MainViewController.swift in Sources */,
 				2A55DEFB20244F0400B7E4E8 /* AppDelegate.swift in Sources */,
 				2A55DF0320244F0400B7E4E8 /* scantest.xcdatamodeld in Sources */,
+				2A257DCC202990D800B0860A /* getgateway.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +395,7 @@
 			baseConfigurationReference = 54967D7B28572EB3DDDACD68 /* Pods-scantest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JAWB2S5NHB;
 				INFOPLIST_FILE = scantest/Info.plist;
@@ -367,6 +403,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nearhop.scantest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "scantest/utils/scantest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -377,6 +415,7 @@
 			baseConfigurationReference = C4345E63922963DDD0AEDFA8 /* Pods-scantest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JAWB2S5NHB;
 				INFOPLIST_FILE = scantest/Info.plist;
@@ -384,6 +423,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nearhop.scantest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "scantest/utils/scantest-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

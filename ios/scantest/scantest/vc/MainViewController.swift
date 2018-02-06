@@ -36,9 +36,8 @@ class MainViewController: UIViewController {
                 let rIP = getRouterIPAddress();
                 let subnetAddr = String(cString: getIPFromNumber(subnet))
                 let IPAddr = String(cString: getIPFromNumber(rIP))
-
-                print("change")
-
+                print(subnetAddr)
+                print(IPAddr)
             }
             DispatchQueue.global(qos:.userInteractive).async {
                 
@@ -49,6 +48,26 @@ class MainViewController: UIViewController {
         }
     }
     
+    func intToBinaryString( _ value:Int32 ) -> String {
+        
+        var result = ""
+        
+        var _value = value
+        
+        while _value > 0 {
+            
+            result = ( _value % 2 != 0 ? "1" : "0" ) + result
+            _value /= 2
+        }
+        
+//        while result.characters.count % 8 != 0 {
+//
+//            result = "0" + result
+//        }
+//
+        return result
+    }
+
     
     func checkPort(routerAddress : String){
         client = TCPClient(address: routerAddress, port: Int32(port))

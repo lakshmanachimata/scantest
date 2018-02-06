@@ -9,9 +9,14 @@
 import UIKit
 import Foundation
 import SystemConfiguration.CaptiveNetwork
+import SwiftSocket
 
 class MainViewController: UIViewController {
 
+    let host = ""
+    let port = 80
+    var client: TCPClient?
+    
     @IBOutlet weak var scanem: UIButton!
     override func viewDidLoad()
     {
@@ -25,9 +30,36 @@ class MainViewController: UIViewController {
     @objc func scanit(){
         let ssid = self.getWiFiName()
         if( ssid != nil){
-            let routerAddress = String(cString: getDefaultIPNumber())
-            print(routerAddress);
-            print(getWiFiAddress())
+            let rAddrs  = getRouterDetails();
+            if(rAddrs == 0){
+                let subnet = getSubNetMaskValue();
+                let rIP = getRouterIPAddress();
+                let subnetAddr = String(cString: getIPFromNumber(subnet))
+                let IPAddr = String(cString: getIPFromNumber(rIP))
+
+                print("change")
+
+            }
+            DispatchQueue.global(qos:.userInteractive).async {
+                
+                DispatchQueue.main.async {
+                    
+                }
+            }
+        }
+    }
+    
+    
+    func checkPort(routerAddress : String){
+        client = TCPClient(address: routerAddress, port: Int32(port))
+        switch client?.connect(timeout: 10) {
+        case .success?:
+            print("routerAddress has open 80")
+            break;
+        case .failure(let error)?:
+            break;
+        case .none:
+            break;
         }
     }
     

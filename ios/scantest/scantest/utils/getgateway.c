@@ -18,19 +18,44 @@
 #define ROUNDUP(a) \
 ((a) > 0 ? (1 + (((a) - 1) | (sizeof(long) - 1))) : sizeof(long))
 
-char* getDefaultIPNumber(){
+char* getIPFromNumber(int inaddr){
     struct in_addr gatewayaddr;
-    int r = getdefaultgateway(&(gatewayaddr.s_addr));
-    if(r > 0) {
-        return r;
-    }
+    gatewayaddr.s_addr = inaddr;
     char* ipadd = inet_ntoa(gatewayaddr);
     return ipadd;
 }
 
+int getDefaultIPNumber(){
+    struct in_addr gatewayaddr;
+    int r = getdefaultgateway(&(gatewayaddr.s_addr));
+    if(r > 0) {
+        return 0;
+    }
+    return gatewayaddr.s_addr;
+}
+
+int getRouterDetails(){
+    int addrs[2] = {0,0};
+    struct in_addr gatewayaddr,subnetAddress;
+    int r = getIpDetails(&gatewayaddr,&subnetAddress);
+    if(r > 0) {
+        return r;
+    }
+    subNetMaskAddress = gatewayaddr.s_addr;
+    gatewayAddress = subnetAddress.s_addr;
+    return 0;
+}
+
+int getSubNetMaskValue(){
+    return subNetMaskAddress;
+}
+
+int getRouterIPAddress(){
+    return gatewayAddress;
+}
+
 int getdefaultgateway(in_addr_t * addr)
 {
-    printf("getdefaultgateway\n");
 
     int mib[] = {CTL_NET, PF_ROUTE, 0, AF_INET,
         NET_RT_FLAGS, RTF_GATEWAY};
@@ -80,6 +105,35 @@ int getdefaultgateway(in_addr_t * addr)
     }
 
     return r;
+}
+
+int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask){
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    
+    if (success == 0)
+    {
+        temp_addr = interfaces;
+        while(temp_addr != NULL)
+        {
+            // check if interface is en0 which is the wifi connection on the iPhone
+            if(temp_addr->ifa_addr->sa_family == AF_INET)
+            {
+                if(strcmp(TypeEN,temp_addr->ifa_name)==0)
+                {
+                    *routerIPAddress = ((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr;
+                    *subNetMask = ((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr;
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+        freeifaddrs(interfaces);
+    }
+    return 0;
+
 }
 
 #endif

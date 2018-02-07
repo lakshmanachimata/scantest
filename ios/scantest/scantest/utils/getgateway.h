@@ -29,4 +29,5 @@ char* getIPFromNumber(int inaddr);
 int getRouterDetails();
 int getSubNetMaskValue();
 int getRouterIPAddress();
+int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask);
 #endif /* getgateway_h */

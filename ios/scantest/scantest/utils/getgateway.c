@@ -41,8 +41,12 @@ int getRouterDetails(){
     if(r > 0) {
         return r;
     }
-    subNetMaskAddress = gatewayaddr.s_addr;
-    gatewayAddress = subnetAddress.s_addr;
+    int rr = getdefaultgateway(&gatewayaddr);
+    gatewayAddress = gatewayaddr.s_addr;
+    if(rr > 0) {
+        return rr;
+    }
+    subNetMaskAddress = subnetAddress.s_addr;
     return 0;
 }
 
@@ -125,7 +129,7 @@ int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask){
                 if(strcmp(TypeEN,temp_addr->ifa_name)==0)
                 {
                     *routerIPAddress = ((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr;
-                    *subNetMask = ((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr;
+//                    *subNetMask = ((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr;
                 }
             }
             temp_addr = temp_addr->ifa_next;

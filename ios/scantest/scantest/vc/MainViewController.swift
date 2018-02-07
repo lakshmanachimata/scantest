@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
                 let IPAddr = String(cString: getIPFromNumber(rIP))
                 print(subnetAddr)
                 print(IPAddr)
+                print(getWiFiAddress())
             }
             DispatchQueue.global(qos:.userInteractive).async {
                 

@@ -33,12 +33,14 @@ class MainViewController: UIViewController {
             let rAddrs  = getRouterDetails();
             if(rAddrs == 0){
                 let subnet = getSubNetMaskValue();
-                let rIP = getRouterIPAddress();
+                var rIP = getRouterIPAddress();
+                rIP =  rIP  + 255;
                 let subnetAddr = String(cString: getIPFromNumber(subnet))
-                let IPAddr = String(cString: getIPFromNumber(rIP))
+                let rIPAddr = String(cString: getIPFromNumber(rIP))
                 print(subnetAddr)
-                print(IPAddr)
-                print(getWiFiAddress())
+                print(rIPAddr)
+                let ipAddr =  getWiFiAddress() as! String;
+                print(ipAddr)
             }
             DispatchQueue.global(qos:.userInteractive).async {
                 

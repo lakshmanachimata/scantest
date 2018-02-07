@@ -128,8 +128,8 @@ int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask){
             {
                 if(strcmp(TypeEN,temp_addr->ifa_name)==0)
                 {
-                    *routerIPAddress = ((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr;
-//                    *subNetMask = ((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr;
+ //                   *subNetMask = ((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr;
+                   *subNetMask = ((struct sockaddr_in *)temp_addr->ifa_netmask)->sin_addr;
                 }
             }
             temp_addr = temp_addr->ifa_next;

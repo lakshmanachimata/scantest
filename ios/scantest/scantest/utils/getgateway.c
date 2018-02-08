@@ -18,14 +18,22 @@
 #define ROUNDUP(a) \
 ((a) > 0 ? (1 + (((a) - 1) | (sizeof(long) - 1))) : sizeof(long))
 
-char* getIPFromNumber(int inaddr){
+char* getIPFromNumber(unsigned int inaddr){
     struct in_addr gatewayaddr;
-    gatewayaddr.s_addr = inaddr;
+    gatewayaddr.s_addr = htonl(inaddr);
+//    printf("hexC: %x \n", inaddr);
     char* ipadd = inet_ntoa(gatewayaddr);
+
     return ipadd;
 }
 
-int getDefaultIPNumber(){
+unsigned int getNumberFromIP(char* ip){
+    struct in_addr addr;
+    inet_aton(ip, &addr);
+//    printf("hexN: %u", ntohl(addr.s_addr));
+    return ntohl(addr.s_addr);
+}
+unsigned int getDefaultIPNumber(){
     struct in_addr gatewayaddr;
     int r = getdefaultgateway(&(gatewayaddr.s_addr));
     if(r > 0) {
@@ -34,7 +42,7 @@ int getDefaultIPNumber(){
     return gatewayaddr.s_addr;
 }
 
-int getRouterDetails(){
+unsigned int getRouterDetails(){
     int addrs[2] = {0,0};
     struct in_addr gatewayaddr,subnetAddress;
     int r = getIpDetails(&gatewayaddr,&subnetAddress);
@@ -50,15 +58,15 @@ int getRouterDetails(){
     return 0;
 }
 
-int getSubNetMaskValue(){
-    return subNetMaskAddress;
+unsigned int getSubNetMaskValue(){
+    return ntohl(subNetMaskAddress);
 }
 
-int getRouterIPAddress(){
-    return gatewayAddress;
+unsigned int getRouterIPAddress(){
+    return ntohl(gatewayAddress);
 }
 
-int getdefaultgateway(in_addr_t * addr)
+unsigned int getdefaultgateway(in_addr_t * addr)
 {
 
     int mib[] = {CTL_NET, PF_ROUTE, 0, AF_INET,
@@ -111,7 +119,7 @@ int getdefaultgateway(in_addr_t * addr)
     return r;
 }
 
-int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask){
+unsigned int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask){
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
     int success = 0;

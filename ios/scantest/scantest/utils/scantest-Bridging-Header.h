@@ -3,8 +3,9 @@
 //
 
 #include "getgateway.h"
-int getDefaultIPNumber();
-char* getIPFromNumber(int inaddr);
-int getRouterDetails();
-int getSubNetMaskValue();
-int getRouterIPAddress();
+unsigned int getDefaultIPNumber();
+char* getIPFromNumber(unsigned int inaddr);
+unsigned int getRouterDetails();
+unsigned int getSubNetMaskValue();
+unsigned int getRouterIPAddress();
+unsigned int getNumberFromIP(char* ip);

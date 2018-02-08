@@ -34,12 +34,20 @@ class MainViewController: UIViewController {
             if(rAddrs == 0){
                 let subnet = getSubNetMaskValue();
                 var rIP = getRouterIPAddress();
-                rIP =  rIP  + 255;
                 let subnetAddr = String(cString: getIPFromNumber(subnet))
                 let rIPAddr = String(cString: getIPFromNumber(rIP))
                 print(subnetAddr)
                 print(rIPAddr)
+                var subnetCidr = countBits(subnet);
+                let hostBits = 32 - subnetCidr
+                var netmask : UInt32 = (0xffffffff >> (32 - subnetCidr)) << (32 - subnetCidr); // How many bits for the netmask.
+                let hostsToScan: UInt32 = (UInt32(Int(pow(Double(2),Double(hostBits))) - 2))
                 let ipAddr =  getWiFiAddress() as! String;
+                var firstAddr = (rIP) + 1; // AND the bits we care about, then first addr.
+                var startIP = rIP + 1;
+                var stopIP = rIP + hostsToScan;
+                let startIPAddr = String(cString: getIPFromNumber(startIP))
+                let stopIPAddr = String(cString: getIPFromNumber(stopIP))
                 print(ipAddr)
             }
             DispatchQueue.global(qos:.userInteractive).async {
@@ -49,6 +57,21 @@ class MainViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func  countBits( _ value: UInt32 ) -> UInt32
+    {
+        var byte = value
+        var count : UInt32 = 0;
+        for i in 0..<32 {
+            let currentBit = byte & 0x01
+            if currentBit != 0 {
+                count =  count + 1;
+            }
+            byte >>= 1
+        }
+        
+        return count
     }
     
     func intToBinaryString( _ value:Int32 ) -> String {

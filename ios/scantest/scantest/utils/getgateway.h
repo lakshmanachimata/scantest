@@ -23,11 +23,13 @@
 static unsigned int gatewayAddress = 0;
 static unsigned int subNetMaskAddress = 0;
 
-int getdefaultgateway(in_addr_t * addr);
-int getDefaultIPNumber();
-char* getIPFromNumber(int inaddr);
-int getRouterDetails();
-int getSubNetMaskValue();
-int getRouterIPAddress();
-int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask);
+unsigned int getdefaultgateway(in_addr_t * addr);
+unsigned int getDefaultIPNumber();
+char* getIPFromNumber(unsigned int inaddr);
+unsigned int getRouterDetails();
+unsigned int getSubNetMaskValue();
+unsigned int getRouterIPAddress();
+unsigned int getIpDetails(struct in_addr * routerIPAddress, struct in_addr * subNetMask);
+unsigned int getNumberFromIP(char* ip);
+
 #endif /* getgateway_h */

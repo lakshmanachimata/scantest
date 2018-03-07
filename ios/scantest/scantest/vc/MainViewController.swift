@@ -28,35 +28,36 @@ class MainViewController: UIViewController {
     }
     
     @objc func scanit(){
-        let ssid = self.getWiFiName()
-        if( ssid != nil){
-            let rAddrs  = getRouterDetails();
-            if(rAddrs == 0){
-                let subnet = getSubNetMaskValue();
-                var rIP = getRouterIPAddress();
-                let subnetAddr = String(cString: getIPFromNumber(subnet))
-                let rIPAddr = String(cString: getIPFromNumber(rIP))
-                print(subnetAddr)
-                print(rIPAddr)
-                var subnetCidr = countBits(subnet);
-                let hostBits = 32 - subnetCidr
-                var netmask : UInt32 = (0xffffffff >> (32 - subnetCidr)) << (32 - subnetCidr); // How many bits for the netmask.
-                let hostsToScan: UInt32 = (UInt32(Int(pow(Double(2),Double(hostBits))) - 2))
-                let ipAddr =  getWiFiAddress() as! String;
-                var firstAddr = (rIP) + 1; // AND the bits we care about, then first addr.
-                var startIP = rIP + 1;
-                var stopIP = rIP + hostsToScan;
-                let startIPAddr = String(cString: getIPFromNumber(startIP))
-                let stopIPAddr = String(cString: getIPFromNumber(stopIP))
-                print(ipAddr)
-            }
-            DispatchQueue.global(qos:.userInteractive).async {
-                
-                DispatchQueue.main.async {
-                    
-                }
-            }
-        }
+        testList();
+//        let ssid = self.getWiFiName()
+//        if( ssid != nil){
+//            let rAddrs  = getRouterDetails();
+//            if(rAddrs == 0){
+//                let subnet = getSubNetMaskValue();
+//                var rIP = getRouterIPAddress();
+//                let subnetAddr = String(cString: getIPFromNumber(subnet))
+//                let rIPAddr = String(cString: getIPFromNumber(rIP))
+//                print(subnetAddr)
+//                print(rIPAddr)
+//                var subnetCidr = countBits(subnet);
+//                let hostBits = 32 - subnetCidr
+//                var netmask : UInt32 = (0xffffffff >> (32 - subnetCidr)) << (32 - subnetCidr); // How many bits for the netmask.
+//                let hostsToScan: UInt32 = (UInt32(Int(pow(Double(2),Double(hostBits))) - 2))
+//                let ipAddr =  getWiFiAddress() as! String;
+//                var firstAddr = (rIP) + 1; // AND the bits we care about, then first addr.
+//                var startIP = rIP + 1;
+//                var stopIP = rIP + hostsToScan;
+//                let startIPAddr = String(cString: getIPFromNumber(startIP))
+//                let stopIPAddr = String(cString: getIPFromNumber(stopIP))
+//                print(ipAddr)
+//            }
+//            DispatchQueue.global(qos:.userInteractive).async {
+//
+//                DispatchQueue.main.async {
+//
+//                }
+//            }
+//        }
     }
     
     func  countBits( _ value: UInt32 ) -> UInt32

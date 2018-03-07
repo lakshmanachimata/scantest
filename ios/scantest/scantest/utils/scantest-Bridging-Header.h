@@ -3,9 +3,12 @@
 //
 
 #include "getgateway.h"
+#include "nhlink.h"
+
 unsigned int getDefaultIPNumber();
 char* getIPFromNumber(unsigned int inaddr);
 unsigned int getRouterDetails();
 unsigned int getSubNetMaskValue();
 unsigned int getRouterIPAddress();
 unsigned int getNumberFromIP(char* ip);
+void testList();

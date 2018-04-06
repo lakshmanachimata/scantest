@@ -13,11 +13,23 @@
 
 
 void testList(){
-//    struct Node* myNode1 = addDataAt(0, 0);
-//    struct Node* myNode2 = addDataAt(1, 1);
-//    struct Node* myNode3 = addDataAt(2, 2);
-//    struct Node* myNode4 = addDataAt(3, 3);
-//    struct Node* myNode5 = addDataAt(4, 4);
+    struct Node* myNode1 = addDataAt(0, 3);
+    struct Node* myNode2 = addDataAt(1, 2);
+    struct Node* myNode3 = addDataAt(2, 5);
+    struct Node* myNode4 = addDataAt(3, 9);
+    struct Node* myNode5 = addDataAt(4, 6);
+    struct Node* myNode6 = addDataAt(5, 11);
+    struct Node* myNode7 = addDataAt(6, 19);
+    struct Node* myNode8 = addDataAt(7, 4);
+    struct Node* myNode9 = addDataAt(3, 8);
+
+    int linkLen = 0;
+    struct Node* temp = root;
+    while(temp->next != NULL){
+        linkLen += 1;
+        temp = temp->next;
+    }
+    mergeSort(root, 0, linkLen);
 //    int c;
 //    int a = getDataAt(2, &c);
 //    struct Node* myNode6 = deleteNodeAt(3);
@@ -25,19 +37,19 @@ void testList(){
 //    int b = getDataAt(3, &c);
 //    struct Node* myNode8 = reverseList();
 //    struct Node* myNode9 = reverseListRecursive(myNode8);
-//    int d = 1;
+
     
 
-    addNodeBBST(&rootBBST,4);
-    addNodeBBST(&rootBBST,5);
-    addNodeBBST(&rootBBST,6);
-    addNodeBBST(&rootBBST,7);
-    addNodeBBST(&rootBBST,1);
-    struct BBSTNode* myNode1 = findDataInBBST(rootBBST, 7);
-    addNodeBBST(&rootBBST,2);
-    addNodeBBST(&rootBBST,3);
-    struct BBSTNode* myNode2 = removeNodeBBST(rootBBST,6);
-    struct BBSTNode* myNode3 = findDataInBBST(rootBBST, 3);
+//    addNodeBBST(&rootBBST,4);
+//    addNodeBBST(&rootBBST,5);
+//    addNodeBBST(&rootBBST,6);
+//    addNodeBBST(&rootBBST,7);
+//    addNodeBBST(&rootBBST,1);
+//    struct BBSTNode* myNode1 = findDataInBBST(rootBBST, 7);
+//    addNodeBBST(&rootBBST,2);
+//    addNodeBBST(&rootBBST,3);
+//    struct BBSTNode* myNode2 = removeNodeBBST(rootBBST,6);
+//    struct BBSTNode* myNode3 = findDataInBBST(rootBBST, 3);
 }
 
 struct BBSTNode* getRootBBST(){
@@ -79,6 +91,15 @@ struct BBSTNode* getminNode(struct BBSTNode* cNode) {
         return getminNode(cNode->left);
 }
 
+
+struct BBSTNode* getmaxNode(struct BBSTNode* cNode) {
+    if (cNode->right == NULL)
+        return cNode;
+    else
+        return getminNode(cNode->right);
+}
+
+
 struct BBSTNode* removeNodeBBST(struct BBSTNode* cNode, int inData){
 
     if(cNode == NULL){
@@ -93,7 +114,7 @@ struct BBSTNode* removeNodeBBST(struct BBSTNode* cNode, int inData){
            cNode->right = removeNodeBBST(cNode->right,inData);
         }
     }else{
-        if(cNode->left = NULL){
+        if(cNode->left == NULL){
             struct BBSTNode* temp = cNode->right;
             free(cNode);
             return temp;
@@ -116,6 +137,7 @@ struct BBSTNode* removeNodeBBST(struct BBSTNode* cNode, int inData){
 struct Node* getRoot(){
     return root;
 }
+
 int getLength(){
     int counter = 0;
     struct Node* temp = root;
@@ -227,6 +249,23 @@ struct Node* reverseListRecursive(struct Node* first){
     first->next = NULL; // since first is the new last, make its link NULL.
     
     return rest; // rest
+}
+
+void  merge(struct Node* start1 , struct Node* start2){
+    
+}
+struct Node*  mergeSort(struct Node* startNode, int low, int high){
+    
+    if(low < high){
+    int mid =   low+(high-low)/2;
+        // Sort first and second halves
+        mergeSort(startNode, low, mid);
+        mergeSort(startNode, mid+1, high);
+        
+        int a = 1;
+    }
+    
+    return NULL;
 }
 
 

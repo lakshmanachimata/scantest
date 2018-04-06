@@ -5,6 +5,7 @@
 }
 .standardcol{
     width: 10vw;
+    overflow: scroll;
     height: 16.66vh;
     background-color: transparent;
     border: 1px solid green;

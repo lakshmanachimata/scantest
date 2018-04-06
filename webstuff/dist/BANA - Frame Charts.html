@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wits/frame_analysis -->
+<html lang="auto"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>BANA - Frame Charts</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-page-mode" content="app">
+    <meta name="browsermode" content="application">
+    <meta name="theme-color" content="#0099CC">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-TileColor" content="#0099CC">
+
+    <meta name="msapplication-TileImage" content="/luci-static/openwrt.org/logo.png">
+    <link rel="icon" href="http://192.168.9.1/luci-static/openwrt.org/logo.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" href="http://192.168.9.1/luci-static/openwrt.org/logo.png" sizes="144x144">
+
+    <link rel="stylesheet" href="./BANA - Frame Charts_files/style.css">
+    <link rel="stylesheet" href="./BANA - Frame Charts_files/tree.css">
+    <link rel="stylesheet" href="./BANA - Frame Charts_files/font-awesome.min.css">
+    <link rel="shortcut icon" href="http://192.168.9.1/luci-static/openwrt.org/favicon.ico">
+    <script src="./BANA - Frame Charts_files/jquery.min.js"></script>
+      <script src="./BANA - Frame Charts_files/bootstrap.js"></script>
+
+    <script src="./BANA - Frame Charts_files/xhr.js"></script>
+    <script src="./BANA - Frame Charts_files/Chart.bundle.js"></script><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+	<script src="./BANA - Frame Charts_files/utils.js"></script>
+</head>
+
+<body class="lang_autoFrame Charts logged-in node-wits-frame_analysis">
+
+<header>
+	<div class="container">
+	<span class="showSide"></span>
+	</div>
+</header>
+
+ <div class="main">
+	 <div style="display: none;" class="loading"><span><div class="loading-img"></div>Loading...</span></div>
+	 <div class="main-left">
+		 <ul class="nav">
+			 <li class="slide">
+				 <a class="menu" data-title="Status" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/status"><i class="menu--icon  fa fa-fw fa-check-square"></i>Status</a>
+			 <ul class="slide-menu">
+				 <li><a data-title="Overview" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/status/overview"><i class="menu--icon  fa fa-fw fa-check-square"></i>Overview</a></li>
+			 </ul>
+			 </li>
+			 
+			 <li class="slide">
+				 <a class="menu" data-title="System" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/system"><i class="menu--icon  fa fa-fw fa-cog"></i>System</a>
+			 <ul class="slide-menu">
+				 <li><a data-title="Timezone" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/system/system"><i class="menu--icon  fa fa-fw fa-clock-o"></i>Timezone</a></li>
+				 <li><a data-title="Administration" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/system/admin"><i class="menu--icon  fa fa-fw fa-gear"></i>Administration</a></li>
+				 <li><a data-title="Factory Reset" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/system/flashops"><i class="menu--icon  fa fa-fw fa-circle-o-notch"></i>Factory Reset</a></li>
+				 <li><a data-title="Reboot" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/system/reboot"><i class="menu--icon  fa fa-fw fa-power-off"></i>Reboot</a></li>
+			 </ul>
+			 </li>
+			 
+			 <li class="slide">
+				 <a class="menu" data-title="Network" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/network"><i class="menu--icon  fa fa-fw fa-sitemap"></i>Network</a>
+			 <ul class="slide-menu">
+				 <li><a data-title="Network Monitor" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/network/monitor"><i class="menu--icon  fa fa-fw fa-arrows"></i>Network Monitor</a></li>
+				 <li><a data-title="Join My Network" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/network/wireless"><i class="menu--icon  fa fa-fw fa-arrows"></i>Join My Network</a></li>
+				 <li><a data-title="4G" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/network/4g"><i class="menu--icon  fa fa-fw fa-sellsy"></i>4G</a></li>
+				 <li><a data-title="Diagnostics" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/network/diagnostics"><i class="menu--icon  fa fa-fw fa-wrench"></i>Diagnostics</a></li>
+				 <li><a data-title="Portscan" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/network/portscan"><i class="menu--icon  fa fa-fw fa-bug"></i>Portscan</a></li>
+			 </ul>
+			 </li>
+			 
+			 <li class="slide">
+				 <a class="menu active" data-title="WiFi Troubleshoot" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wits"><i class="menu--icon  fa fa-fw fa-arrows"></i>WiFi Troubleshoot</a>
+			 <ul class="slide-menu active" style="display: block;">
+				 <li><a data-title="Trigger Scan" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wits/scan"><i class="menu--icon  fa fa-fw fa-arrows"></i>Trigger Scan</a></li>
+				 <li class="active"><a data-title="Frame Charts" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wits/frame_analysis"><i class="menu--icon  fa fa-fw fa-arrows"></i>Frame Charts</a></li>
+				 <li><a data-title="WiFi RF Analyzer" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wits/rfanalysis"><i class="menu--icon  fa fa-fw fa-arrows"></i>WiFi RF Analyzer</a></li>
+				 <li><a data-title="Channel Charts" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wits/bychannel"><i class="menu--icon  fa fa-fw fa-arrows"></i>Channel Charts</a></li>
+			 </ul>
+			 </li>
+			 
+			 <li class="slide">
+				 <a class="menu" data-title="Monitor My Router / AP" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wids"><i class="menu--icon  fa fa-fw fa-arrows"></i>Monitor My Router / AP</a>
+			 <ul class="slide-menu">
+				 <li><a data-title="Detect Attacks" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/wids/detect"><i class="menu--icon  fa fa-fw fa-arrows"></i>Detect Attacks</a></li>
+			 </ul>
+			 </li>
+			 
+			 <li class="slide">
+				 <a class="menu" data-title="WiFi Attacks" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/attacks"><i class="menu--icon  fa fa-fw fa-arrows"></i>WiFi Attacks</a>
+			 <ul class="slide-menu">
+				 <li><a data-title="Beacon Flood" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/attacks/beacon"><i class="menu--icon  fa fa-fw fa-arrows"></i>Beacon Flood</a></li>
+				 <li><a data-title="Disconnect Clients" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/attacks/deauth"><i class="menu--icon  fa fa-fw fa-arrows"></i>Disconnect Clients</a></li>
+				 <li><a data-title="Probe Request Flood" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/attacks/probe"><i class="menu--icon  fa fa-fw fa-arrows"></i>Probe Request Flood</a></li>
+				 <li><a data-title="Freeze AP" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/attacks/assoc"><i class="menu--icon  fa fa-fw fa-arrows"></i>Freeze AP</a></li>
+			 </ul>
+			 </li>
+			 
+			 <li>
+				 <a data-title="Logout" href="http://192.168.9.1/cgi-bin/luci/;stok=14a423bc424db335476fc24360dc4785/admin/logout"><i class="menu--icon  fa fa-fw fa-arrow-circle-right"></i>Logout</a>
+			 </li>
+
+		 </ul>
+	 </div>
+	 <div class="main-right">
+		 <div class="darkMask"></div>
+		 <div id="maincontent">
+			 <div class="container"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+				
+
+<canvas id="pie-chart2"  class="chartjs-render-monitor" style="display: block;"></canvas>
+<script type="text/javascript">
+new Chart(document.getElementById("pie-chart2"), {
+    type: 'pie',
+    data: {
+labels: ["Beacons"],
+      datasets: [{
+label: "Frame Chart",
+        backgroundColor: ["#3e95cd"],
+        data: [36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Frame Chart: Total Number of Frames on channel 1: 36'
+}
+}
+});
+</script>
+
+<canvas id="pie-chart3" class="chartjs-render-monitor" style="display: block;"></canvas>
+<script type="text/javascript">
+  new Chart(document.getElementById("pie-chart3"), {
+    type: 'pie',
+    data: {
+      labels: ["Beacons"],
+      datasets: [{
+        label: "Frame Chart",
+        backgroundColor: ["#3e95cd"],
+        data: [36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Frame Chart: Total Number of Frames on channel 1: 36'
+      }
+    }
+  });
+</script>
+
+                </div>
+            </div>
+        </div>
+<script>
+        // thanks for Jo-Philipp Wich <jow@openwrt.org>
+        var luciLocation = [ "admin", "wits", "frame_analysis" ];
+    </script>
+
+    <script src="./BANA - Frame Charts_files/script.js"></script>
+
+
+
+</div></body></html>

@@ -39,4 +39,8 @@ void addNodeBBST(struct BBSTNode** cNode, int inData);
 struct BBSTNode* findDataInBBST(struct BBSTNode* cNode,  int inData);
 struct BBSTNode* removeNodeBBST(struct BBSTNode* cNode, int inData);
 struct BBSTNode* getminValue(struct BBSTNode* cNode);
+
+
+void  merge(struct Node* start1 , struct Node* start2);
+struct Node*  mergeSort(struct Node* startNode, int low, int high);
 #endif /* nhlink_h */
